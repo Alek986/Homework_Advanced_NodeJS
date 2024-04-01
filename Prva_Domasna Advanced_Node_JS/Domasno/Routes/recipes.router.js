@@ -19,7 +19,7 @@ recipiesRouter.post("/recipies", async (req, res) => {
     try {
         const productOfRecipieModel = new recipieMongoModel(recipieEntity);
     
-        recipies = await productOfRecipieModel.save();
+        const recipies = await productOfRecipieModel.save();
         //console.log(recipies);
         res.status(201).send({message: "Recipie created"})
     } catch (error) {
@@ -41,7 +41,7 @@ recipiesRouter.get("/recipies/:id", async (req, res) => {
    const recipie = await recipieMongoModel.findById(recipieID);
     //console.log(recipie);
     if(!recipie){
-        return res.status(404).send({message: `Product with id ${recipieID} not found`})
+        return res.status(404).send({message: `Product with id: ${recipieID} not found`})
     }
     res.send(recipie);
 });
@@ -53,7 +53,7 @@ recipiesRouter.delete("/recipies/:id", async (req, res) => {
    const recipie = await recipieMongoModel.findByIdAndDelete(recipieID);
     //console.log(recipie);
     if(!recipie){
-        return res.status(404).send({message: `Product with id ${recipieID} not found`})
+        return res.status(404).send({message: `Product with id: ${recipieID} not found`})
     }
     res.send({message:`${recipie} was successfully deleted`});
 });
@@ -77,7 +77,7 @@ recipiesRouter.put("/recipies/:id", async (req, res) => {
     const recipie = await recipieMongoModel.findByIdAndUpdate(recipieID, updatedRecipie);
 
     if(!recipie){
-        return res.status(404).send({message: `Product with id ${recipieID} not found`})
+        return res.status(404).send({message: `Product with id: ${recipieID} not found`})
     }
    
     res.send({message: "Recipie updated"})
