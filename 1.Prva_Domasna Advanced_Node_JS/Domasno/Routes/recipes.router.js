@@ -20,8 +20,9 @@ recipiesRouter.post("/recipies", async (req, res) => {
         const productOfRecipieModel = new recipieMongoModel(recipieEntity);
     
         const recipies = await productOfRecipieModel.save();
+        const id = recipies._id;
         //console.log(recipies);
-        res.status(201).send({message: "Recipie created"})
+        res.status(201).send({message: `Recipie created with id: ${id} `})
     } catch (error) {
         res.send({message: error.message})
     };
