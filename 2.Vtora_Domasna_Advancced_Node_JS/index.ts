@@ -8,7 +8,7 @@ interface Movie {
 
 let movies: Movie[] = [];
 
-let getId = (title: string): string => {
+const getId = (title: string): string => {
     if (title) {
         const id = Date.now().toString();
         return id;
@@ -16,13 +16,13 @@ let getId = (title: string): string => {
     return ""
 };
 
-let addMovie = (title: string, duration: number, genre: string, hasWonOscar?: boolean) => {
-    let id = getId(title);
-    let addedMovie: Movie = { id, title, duration, genre, hasWonOscar };
+const addMovie = (title: string, duration: number, genre: string, hasWonOscar?: boolean) => {
+    const id = getId(title);
+    const addedMovie: Movie = { id, title, duration, genre, hasWonOscar };
     movies.push(addedMovie);
 };
 
-let printMovies = (moviesArray: Movie[], genre: string = "action") => {
-    let filteredMovies = moviesArray.filter(movie => movie.genre === genre);
+const printMovies = (moviesArray: Movie[], genre: string = "action") => {
+    const filteredMovies = moviesArray.filter(movie => movie.genre === genre);
     filteredMovies.forEach(movie => { console.log(`Title: ${movie.title}, Genre: ${movie.genre}, Duration: ${movie.duration} minutes.`) });
 };
