@@ -8,16 +8,59 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.BudgetService = void 0;
 const common_1 = require("@nestjs/common");
-const budget_interface_1 = require("../interfaces/budget.interface");
+const uuid_1 = require("uuid");
 let BudgetService = class BudgetService {
     constructor() {
-        this.budgets = [
-            { id: "1", title: "cash", balance: 1000000, currency: budget_interface_1.CURRENCY.EUR, expenses: [{ id: "1", amount: 100, description: "Basic Expenses" }], incomes: [{ id: "1", amount: 1000, description: "salary" }] }
-        ];
+        this.budgets = [];
     }
     readBudgets() {
         const budgets = this.budgets;
         return budgets;
+    }
+    ;
+    createbudget(createBudget) {
+        const newBudget = {
+            id: (0, uuid_1.v4)(),
+            title: createBudget.title,
+            balance: createBudget.balance,
+            currency: createBudget.currency,
+            expenses: createBudget.expenses,
+            incomes: createBudget.incomes
+        };
+        this.budgets.push(newBudget);
+        return newBudget.id;
+    }
+    ;
+    getBudgetByID(id) {
+        const budgetByID = this.budgets.find((budget) => budget.id === id);
+        if (!budgetByID) {
+            throw new common_1.NotFoundException(`Budget with ID: ${id} was not found`);
+        }
+        ;
+        return budgetByID;
+    }
+    ;
+    removeBudget(id) {
+        const budget = this.budgets.find((budget) => budget.id === id);
+        if (!budget) {
+            throw new common_1.NotFoundException(`Budget with ID: ${id} was not found`);
+        }
+        ;
+        this.budgets = this.budgets.filter((budget) => budget.id !== id);
+    }
+    ;
+    updateBudget(id, updatedBudget) {
+        const updateBudgetByID = this.budgets.find((budget) => budget.id === id);
+        if (!updateBudgetByID) {
+            throw new common_1.NotFoundException(`Budget with ID: ${id} was not found`);
+        }
+        ;
+        updateBudgetByID.title = updatedBudget.title;
+        updateBudgetByID.balance = updatedBudget.balance;
+        updateBudgetByID.currency = updatedBudget.currency;
+        updateBudgetByID.expenses = updatedBudget.expenses;
+        updateBudgetByID.incomes = updatedBudget.incomes;
+        return updateBudgetByID;
     }
     ;
 };

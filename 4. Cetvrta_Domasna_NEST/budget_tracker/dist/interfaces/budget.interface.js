@@ -10,4 +10,5 @@ var CURRENCY;
     CURRENCY["MKD"] = "MKD";
 })(CURRENCY || (exports.CURRENCY = CURRENCY = {}));
 ;
+;
 //# sourceMappingURL=budget.interface.js.map
