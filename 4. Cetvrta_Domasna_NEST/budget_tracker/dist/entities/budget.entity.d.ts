@@ -1,9 +1,9 @@
-export interface ExpenseInterface {
+export declare class ExpenseInterface {
     id: string;
     amount: number;
     description: string;
 }
-export interface IncomeInterface {
+export declare class IncomeInterface {
     id: string;
     amount: number;
     description: string;
@@ -13,7 +13,7 @@ export declare enum CURRENCY {
     USD = "USD",
     MKD = "MKD"
 }
-export interface BudgetInterface {
+export declare class BudgetInterface {
     id: string;
     title: string;
     balance: number;

@@ -21,72 +21,61 @@ let BudgetController = class BudgetController {
         this.budgetService = budgetService;
     }
     listBudgets() {
-        const budgets = this.budgetService.readBudgets();
-        return budgets;
+        return this.budgetService.readBudgets();
     }
     ;
     createBudget(requestbody) {
-        const createdBudget = {
-            title: requestbody.title,
-            balance: requestbody.balance,
-            currency: requestbody.currency,
-            expenses: requestbody.expenses,
-            incomes: requestbody.incomes
-        };
-        const id = this.budgetService.createbudget(createdBudget);
-        return { message: `Budget created`, budgetId: id };
+        return this.budgetService.createBudget(requestbody);
     }
     ;
     getBudgetByID(id) {
-        const budgetbyID = this.budgetService.getBudgetByID(id);
-        return budgetbyID;
+        return this.budgetService.getBudgetByID(id);
     }
     ;
     deleteBudgetByID(id) {
-        this.budgetService.removeBudget(id);
-        return { message: `Budget with id: ${id} was deleted successfully` };
+        return this.budgetService.removeBudget(id);
     }
     ;
     updateBudget(id, requestBody) {
-        const updatedBudget = this.budgetService.updateBudget(id, requestBody);
-        return { message: `Budjet with id: ${id} was updated successfully`, updatedBudget };
+        return this.budgetService.updateBudget(id, requestBody);
     }
+    ;
 };
 exports.BudgetController = BudgetController;
 __decorate([
     (0, common_1.Get)(`/budgets`),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", []),
-    __metadata("design:returntype", void 0)
+    __metadata("design:returntype", Promise)
 ], BudgetController.prototype, "listBudgets", null);
 __decorate([
     (0, common_1.Post)(`/budgets`),
     __param(0, (0, common_1.Body)()),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [budget_dto_1.BudgetDTO]),
-    __metadata("design:returntype", void 0)
+    __metadata("design:returntype", Promise)
 ], BudgetController.prototype, "createBudget", null);
 __decorate([
     (0, common_1.Get)(`/budgets/:id`),
     __param(0, (0, common_1.Param)(`id`)),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [String]),
-    __metadata("design:returntype", void 0)
+    __metadata("design:returntype", Promise)
 ], BudgetController.prototype, "getBudgetByID", null);
 __decorate([
     (0, common_1.Delete)(`/budgets/:id`),
     __param(0, (0, common_1.Param)(`id`)),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [String]),
-    __metadata("design:returntype", void 0)
+    __metadata("design:returntype", Promise)
 ], BudgetController.prototype, "deleteBudgetByID", null);
 __decorate([
     (0, common_1.Put)(`/budgets/:id`),
     __param(0, (0, common_1.Param)(`id`)),
     __param(1, (0, common_1.Body)()),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", [String, budget_dto_1.BudgetDTO]),
-    __metadata("design:returntype", void 0)
+    __metadata("design:paramtypes", [String, budget_dto_1.UpdatedBudgetDTO]),
+    __metadata("design:returntype", Promise)
 ], BudgetController.prototype, "updateBudget", null);
 exports.BudgetController = BudgetController = __decorate([
     (0, common_1.Controller)(),

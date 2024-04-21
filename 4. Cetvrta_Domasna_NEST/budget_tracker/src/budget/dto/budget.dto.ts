@@ -1,11 +1,13 @@
-import { ExpenseInterface, IncomeInterface, CURRENCY } from "src/interfaces/budget.interface";
-import { IsNotEmpty, IsEnum } from "class-validator";
+import { ExpenseInterface, IncomeInterface, CURRENCY } from "src/entities/budget.entity";
+import { IsNotEmpty, IsEnum, IsNumber, IsString, IsOptional } from "class-validator";
 
 export class BudgetDTO {
     @IsNotEmpty()
+    @IsString()
     title: string;
 
     @IsNotEmpty()
+    @IsNumber()
     balance: number;
     
     @IsNotEmpty()
@@ -17,4 +19,24 @@ export class BudgetDTO {
     
     @IsNotEmpty()
     incomes: IncomeInterface []
+};
+
+export class UpdatedBudgetDTO{
+    @IsOptional()
+    @IsString()
+    title?: string;
+
+    @IsOptional()
+    @IsNumber()
+    balance?: number;
+    
+    @IsOptional()
+    @IsEnum(CURRENCY)
+    currency?: CURRENCY;
+    
+    @IsOptional()
+    expenses?: ExpenseInterface[];
+    
+    @IsOptional()
+    incomes?: IncomeInterface[]
 }

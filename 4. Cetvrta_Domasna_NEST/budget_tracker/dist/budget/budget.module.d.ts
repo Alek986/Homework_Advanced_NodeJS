@@ -1,2 +1,2 @@
-export declare class budgetModule {
+export declare class BudgetModule {
 }
