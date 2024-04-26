@@ -17,7 +17,7 @@ let BudgetModule = class BudgetModule {
 exports.BudgetModule = BudgetModule;
 exports.BudgetModule = BudgetModule = __decorate([
     (0, common_1.Module)({
-        imports: [typeorm_1.TypeOrmModule.forFeature([budget_entity_1.BudgetInterface, budget_entity_1.IncomeInterface, budget_entity_1.ExpenseInterface])],
+        imports: [typeorm_1.TypeOrmModule.forFeature([budget_entity_1.BudgetORMEntity, budget_entity_1.IncomeORMEntity, budget_entity_1.ExpenseORMEntity])],
         providers: [budget_service_1.BudgetService],
         controllers: [budget_controller_1.BudgetController]
     })

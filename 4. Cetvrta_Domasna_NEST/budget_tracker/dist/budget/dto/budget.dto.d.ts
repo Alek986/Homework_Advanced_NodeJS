@@ -1,4 +1,4 @@
-import { ExpenseInterface, IncomeInterface, CURRENCY } from "src/entities/budget.entity";
+import { ExpenseInterface, IncomeInterface, CURRENCY } from "src/entities/budget.interface";
 export declare class BudgetDTO {
     title: string;
     balance: number;

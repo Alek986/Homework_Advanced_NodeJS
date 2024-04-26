@@ -1,5 +1,6 @@
 import { Injectable, NotFoundException } from "@nestjs/common";
-import { BudgetInterface, CreatedBudget, ExpenseInterface, IncomeInterface, CURRENCY } from "src/entities/budget.entity";
+import { BudgetORMEntity, ExpenseORMEntity, IncomeORMEntity } from "src/entities/budget.entity";
+import { CreatedBudget, CURRENCY } from "src/entities/budget.interface";
 import { v4 as uuid } from "uuid";
 import { BudgetDTO, UpdatedBudgetDTO } from "./dto/budget.dto";
 import { InjectRepository } from "@nestjs/typeorm";
@@ -9,17 +10,17 @@ import { Repository } from "typeorm";
 export class BudgetService {
     // private budgets: BudgetInterface[] = [];
     constructor(
-        @InjectRepository(BudgetInterface) private budgetRepository: Repository<BudgetInterface>
+        @InjectRepository(BudgetORMEntity) private budgetRepository: Repository<BudgetORMEntity>
     ) {}
 
-    async readBudgets(): Promise<BudgetInterface[]> {
-        return this.budgetRepository.find();
+    async readBudgets(): Promise<BudgetORMEntity[]> {
+        return this.budgetRepository.find({relations: ['expenses', 'incomes']});
 
         // const budgets = this.budgets;
         // return budgets;
     };
 
-    async createBudget(createBudget: CreatedBudget): Promise<BudgetInterface> {
+    async createBudget(createBudget: CreatedBudget): Promise<BudgetORMEntity> {
 
         const createdBudget = this.budgetRepository.create(createBudget)
 
@@ -38,9 +39,10 @@ export class BudgetService {
         // return newBudget.id;
     };
 
-    async getBudgetByID(id: string) :Promise<BudgetInterface>{
+    async getBudgetByID(id: string) :Promise<BudgetORMEntity>{
         
-        return this.budgetRepository.findOneBy({id})
+        return this.budgetRepository.findOneBy({id});
+        
         
         // const budgetByID = this.budgets.find((budget) => budget.id === id);
 
@@ -66,7 +68,7 @@ export class BudgetService {
 
     };
 
-    async updateBudget(id: string, updatedBudget: UpdatedBudgetDTO): Promise<BudgetInterface>{
+    async updateBudget(id: string, updatedBudget: UpdatedBudgetDTO): Promise<BudgetORMEntity>{
         
         const budget = await this.budgetRepository.findOneBy({id});
 

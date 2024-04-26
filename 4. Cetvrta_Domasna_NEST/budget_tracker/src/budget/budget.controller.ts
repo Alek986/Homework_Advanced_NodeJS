@@ -1,6 +1,7 @@
 import { Controller, Get, Post, Body, Param, Delete, Put } from "@nestjs/common";
 import { BudgetService } from "./budget.service";
-import { BudgetInterface, CreatedBudget } from "src/entities/budget.entity";
+import { BudgetORMEntity } from "src/entities/budget.entity";
+import { CreatedBudget } from "src/entities/budget.interface";
 import { BudgetDTO, UpdatedBudgetDTO } from "./dto/budget.dto";
 import { request } from "http";
 
@@ -10,7 +11,7 @@ export class BudgetController {
         private readonly budgetService: BudgetService) { }
 
     @Get(`/budgets`)
-    listBudgets(): Promise<BudgetInterface[]> {
+    listBudgets(): Promise<BudgetORMEntity[]> {
         
         return this.budgetService.readBudgets()
         
@@ -19,7 +20,7 @@ export class BudgetController {
     };
 
     @Post(`/budgets`)
-    createBudget(@Body() requestbody: BudgetDTO): Promise<BudgetInterface> {
+    createBudget(@Body() requestbody: BudgetDTO): Promise<BudgetORMEntity> {
         return this.budgetService.createBudget(requestbody)
 
 
@@ -37,7 +38,7 @@ export class BudgetController {
     };
 
     @Get(`/budgets/:id`)
-    getBudgetByID(@Param(`id`) id: string): Promise<BudgetInterface> {
+    getBudgetByID(@Param(`id`) id: string): Promise<BudgetORMEntity> {
         
         return this.budgetService.getBudgetByID(id)
 
@@ -58,7 +59,7 @@ export class BudgetController {
     };
 
     @Put(`/budgets/:id`)
-    updateBudget(@Param(`id`) id :string, @Body() requestBody: UpdatedBudgetDTO): Promise<BudgetInterface>{
+    updateBudget(@Param(`id`) id :string, @Body() requestBody: UpdatedBudgetDTO): Promise<BudgetORMEntity>{
       
         return this.budgetService.updateBudget(id, requestBody)
 

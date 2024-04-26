@@ -1,4 +1,4 @@
-import { ExpenseInterface, IncomeInterface, CURRENCY } from "src/entities/budget.entity";
+import { ExpenseInterface, IncomeInterface, CURRENCY } from "src/entities/budget.interface";
 import { IsNotEmpty, IsEnum, IsNumber, IsString, IsOptional } from "class-validator";
 
 export class BudgetDTO {

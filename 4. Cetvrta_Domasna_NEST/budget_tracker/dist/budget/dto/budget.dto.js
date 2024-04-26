@@ -10,7 +10,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.UpdatedBudgetDTO = exports.BudgetDTO = void 0;
-const budget_entity_1 = require("../../entities/budget.entity");
+const budget_interface_1 = require("../../entities/budget.interface");
 const class_validator_1 = require("class-validator");
 class BudgetDTO {
 }
@@ -27,7 +27,7 @@ __decorate([
 ], BudgetDTO.prototype, "balance", void 0);
 __decorate([
     (0, class_validator_1.IsNotEmpty)(),
-    (0, class_validator_1.IsEnum)(budget_entity_1.CURRENCY),
+    (0, class_validator_1.IsEnum)(budget_interface_1.CURRENCY),
     __metadata("design:type", String)
 ], BudgetDTO.prototype, "currency", void 0);
 __decorate([
@@ -54,7 +54,7 @@ __decorate([
 ], UpdatedBudgetDTO.prototype, "balance", void 0);
 __decorate([
     (0, class_validator_1.IsOptional)(),
-    (0, class_validator_1.IsEnum)(budget_entity_1.CURRENCY),
+    (0, class_validator_1.IsEnum)(budget_interface_1.CURRENCY),
     __metadata("design:type", String)
 ], UpdatedBudgetDTO.prototype, "currency", void 0);
 __decorate([

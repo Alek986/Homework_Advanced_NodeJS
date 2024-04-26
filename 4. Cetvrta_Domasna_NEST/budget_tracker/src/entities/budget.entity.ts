@@ -1,40 +1,9 @@
-import { Column, Entity, PrimaryGeneratedColumn } from "typeorm"
+import { Column, Entity, JoinColumn, ManyToOne, OneToMany, PrimaryGeneratedColumn } from "typeorm"
+import { CURRENCY } from "./budget.interface";
+
 
 @Entity()
-export class ExpenseInterface {
-// export interface ExpenseInterface {
-    @PrimaryGeneratedColumn(`uuid`)
-    id: string;
-    
-    @Column()
-    amount: number;
-    
-    @Column()
-    description: string
-};
-
-@Entity()
-export class IncomeInterface {
-// export interface IncomeInterface {
-    @PrimaryGeneratedColumn(`uuid`)
-    id: string;
-    
-    @Column()
-    amount: number;
-    
-    @Column()
-    description: string
-};
-
-
-export enum CURRENCY {
-    EUR = "EUR",
-    USD = "USD",
-    MKD = "MKD"
-};
-
-@Entity()
-export class BudgetInterface {
+export class BudgetORMEntity {
 // export interface BudgetInterface {
     @PrimaryGeneratedColumn(`uuid`)
     id: string;
@@ -51,17 +20,80 @@ export class BudgetInterface {
     })
     currency: CURRENCY;   //"EUR" | "USD" | "MKD",
     
-    @Column()
-    expenses: ExpenseInterface [];
+    @OneToMany(() => ExpenseORMEntity, (expense) => expense.budget)
+    expenses: ExpenseORMEntity [];
     
-    @Column()
-    incomes: IncomeInterface []
+    @OneToMany(() => IncomeORMEntity, (income) => income.budget)
+    incomes: IncomeORMEntity []
 };
 
-export interface CreatedBudget {
-    title: string,
-    balance: number,
-    currency: CURRENCY,
-    expenses: ExpenseInterface [],
-    incomes: IncomeInterface []
-}
+
+@Entity()
+export class ExpenseORMEntity {
+// export interface ExpenseInterface {
+    @PrimaryGeneratedColumn(`uuid`)
+    id: string;
+    
+    @Column()
+    amount: number;
+    
+    @Column()
+    description: string;
+
+    @ManyToOne(() => BudgetORMEntity, (budget) => budget.expenses)
+    @JoinColumn()
+    budget: BudgetORMEntity
+
+};
+
+@Entity()
+export class IncomeORMEntity {
+// export interface IncomeInterface {
+    @PrimaryGeneratedColumn(`uuid`)
+    id: string;
+    
+    @Column()
+    amount: number;
+    
+    @Column()
+    description: string;
+
+    @ManyToOne(() => BudgetORMEntity, (budget) => budget.incomes)
+    @JoinColumn()
+    budget: BudgetORMEntity
+
+};
+
+// export interface ExpenseInterface {
+    
+//     amount: number;
+//     description: string;
+//     budget: BudgetInterface
+
+// };
+
+// export interface IncomeInterface {
+//     amount: number;
+//     description: string;
+//     budget: BudgetInterface
+
+// };
+
+
+// export interface BudgetInterface {
+    
+//     title: string;
+//     balance: number;
+//     currency: CURRENCY;   //"EUR" | "USD" | "MKD",
+//     expenses: ExpenseInterface [];
+//     incomes: IncomeInterface []
+// };
+
+
+// export interface CreatedBudget {
+//     title: string,
+//     balance: number,
+//     currency: CURRENCY,
+//     expenses: ExpenseInterface [],
+//     incomes: IncomeInterface []
+// }

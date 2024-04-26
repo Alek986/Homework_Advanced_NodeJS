@@ -1,30 +1,21 @@
-export declare class ExpenseInterface {
-    id: string;
-    amount: number;
-    description: string;
-}
-export declare class IncomeInterface {
-    id: string;
-    amount: number;
-    description: string;
-}
-export declare enum CURRENCY {
-    EUR = "EUR",
-    USD = "USD",
-    MKD = "MKD"
-}
-export declare class BudgetInterface {
+import { CURRENCY } from "./budget.interface";
+export declare class BudgetORMEntity {
     id: string;
     title: string;
     balance: number;
     currency: CURRENCY;
-    expenses: ExpenseInterface[];
-    incomes: IncomeInterface[];
+    expenses: ExpenseORMEntity[];
+    incomes: IncomeORMEntity[];
 }
-export interface CreatedBudget {
-    title: string;
-    balance: number;
-    currency: CURRENCY;
-    expenses: ExpenseInterface[];
-    incomes: IncomeInterface[];
+export declare class ExpenseORMEntity {
+    id: string;
+    amount: number;
+    description: string;
+    budget: BudgetORMEntity;
+}
+export declare class IncomeORMEntity {
+    id: string;
+    amount: number;
+    description: string;
+    budget: BudgetORMEntity;
 }

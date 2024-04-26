@@ -22,7 +22,7 @@ let BudgetService = class BudgetService {
         this.budgetRepository = budgetRepository;
     }
     async readBudgets() {
-        return this.budgetRepository.find();
+        return this.budgetRepository.find({ relations: ['expenses', 'incomes'] });
     }
     ;
     async createBudget(createBudget) {
@@ -48,7 +48,7 @@ let BudgetService = class BudgetService {
 exports.BudgetService = BudgetService;
 exports.BudgetService = BudgetService = __decorate([
     (0, common_1.Injectable)(),
-    __param(0, (0, typeorm_1.InjectRepository)(budget_entity_1.BudgetInterface)),
+    __param(0, (0, typeorm_1.InjectRepository)(budget_entity_1.BudgetORMEntity)),
     __metadata("design:paramtypes", [typeorm_2.Repository])
 ], BudgetService);
 ;

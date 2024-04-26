@@ -1,12 +1,13 @@
-import { BudgetInterface, CreatedBudget } from "src/entities/budget.entity";
+import { BudgetORMEntity } from "src/entities/budget.entity";
+import { CreatedBudget } from "src/entities/budget.interface";
 import { UpdatedBudgetDTO } from "./dto/budget.dto";
 import { Repository } from "typeorm";
 export declare class BudgetService {
     private budgetRepository;
-    constructor(budgetRepository: Repository<BudgetInterface>);
-    readBudgets(): Promise<BudgetInterface[]>;
-    createBudget(createBudget: CreatedBudget): Promise<BudgetInterface>;
-    getBudgetByID(id: string): Promise<BudgetInterface>;
+    constructor(budgetRepository: Repository<BudgetORMEntity>);
+    readBudgets(): Promise<BudgetORMEntity[]>;
+    createBudget(createBudget: CreatedBudget): Promise<BudgetORMEntity>;
+    getBudgetByID(id: string): Promise<BudgetORMEntity>;
     removeBudget(id: string): Promise<void>;
-    updateBudget(id: string, updatedBudget: UpdatedBudgetDTO): Promise<BudgetInterface>;
+    updateBudget(id: string, updatedBudget: UpdatedBudgetDTO): Promise<BudgetORMEntity>;
 }
