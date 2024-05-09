@@ -17,13 +17,18 @@ export interface BudgetInterface {
     title: string;
     balance: number;
     currency: CURRENCY;
-    expenses: ExpenseInterface[];
-    incomes: IncomeInterface[];
 }
 export interface CreatedBudget {
     title: string;
     balance: number;
     currency: CURRENCY;
-    expenses: ExpenseInterface[];
-    incomes: IncomeInterface[];
+    expenses: ExpenseInterface;
+    incomes: IncomeInterface;
+}
+export interface UpdatedBudget {
+    title?: string;
+    balance?: number;
+    currency?: CURRENCY;
+    expenses?: ExpenseInterface;
+    incomes?: IncomeInterface;
 }

@@ -11,4 +11,5 @@ var CURRENCY;
 ;
 ;
 ;
+;
 //# sourceMappingURL=budget.interface.js.map

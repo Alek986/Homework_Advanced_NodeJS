@@ -1,6 +1,8 @@
 import { Module } from "@nestjs/common";
 import { TypeOrmModule } from "@nestjs/typeorm";
 
+
+
 @Module({
     imports: [
         TypeOrmModule.forRoot({
@@ -10,7 +12,8 @@ import { TypeOrmModule } from "@nestjs/typeorm";
             username: `postgres`,
             password: `Ace02051986`,
             database: `budget`,
-            entities: [__dirname + `/../**/*.entity{.ts,.js}`],
+            autoLoadEntities: true,
+            // entities: [__dirname + `/../**/*.entity{.ts,.js}`],
             synchronize: true
         })
     ]

@@ -22,7 +22,7 @@ exports.DataBaseModule = DataBaseModule = __decorate([
                 username: `postgres`,
                 password: `Ace02051986`,
                 database: `budget`,
-                entities: [__dirname + `/../**/*.entity{.ts,.js}`],
+                autoLoadEntities: true,
                 synchronize: true
             })
         ]

@@ -3,13 +3,13 @@ export declare class BudgetDTO {
     title: string;
     balance: number;
     currency: CURRENCY;
-    expenses: ExpenseInterface[];
-    incomes: IncomeInterface[];
+    expenses: ExpenseInterface;
+    incomes: IncomeInterface;
 }
 export declare class UpdatedBudgetDTO {
     title?: string;
     balance?: number;
     currency?: CURRENCY;
-    expenses?: ExpenseInterface[];
-    incomes?: IncomeInterface[];
+    expenses?: ExpenseInterface;
+    incomes?: IncomeInterface;
 }

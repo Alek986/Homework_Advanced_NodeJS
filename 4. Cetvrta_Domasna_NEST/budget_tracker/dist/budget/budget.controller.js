@@ -25,7 +25,14 @@ let BudgetController = class BudgetController {
     }
     ;
     createBudget(requestbody) {
-        return this.budgetService.createBudget(requestbody);
+        const mappedBudget = {
+            title: requestbody.title,
+            balance: requestbody.balance,
+            currency: requestbody.currency,
+            expenses: requestbody.expenses,
+            incomes: requestbody.incomes
+        };
+        return this.budgetService.createBudget(mappedBudget);
     }
     ;
     getBudgetByID(id) {

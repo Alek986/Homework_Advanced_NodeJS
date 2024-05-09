@@ -9,9 +9,11 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.IncomeORMEntity = exports.ExpenseORMEntity = exports.BudgetORMEntity = void 0;
+exports.BudgetORMEntity = void 0;
 const typeorm_1 = require("typeorm");
 const budget_interface_1 = require("./budget.interface");
+const expense_entity_1 = require("../expense/entity/expense.entity");
+const income_entity_1 = require("../income/entity/income.entity");
 let BudgetORMEntity = class BudgetORMEntity {
 };
 exports.BudgetORMEntity = BudgetORMEntity;
@@ -35,63 +37,15 @@ __decorate([
     __metadata("design:type", String)
 ], BudgetORMEntity.prototype, "currency", void 0);
 __decorate([
-    (0, typeorm_1.OneToMany)(() => ExpenseORMEntity, (expense) => expense.budget),
-    __metadata("design:type", Array)
+    (0, typeorm_1.OneToMany)(() => expense_entity_1.ExpenseORMEntity, (expense) => expense.budget),
+    __metadata("design:type", expense_entity_1.ExpenseORMEntity)
 ], BudgetORMEntity.prototype, "expenses", void 0);
 __decorate([
-    (0, typeorm_1.OneToMany)(() => IncomeORMEntity, (income) => income.budget),
-    __metadata("design:type", Array)
+    (0, typeorm_1.OneToMany)(() => income_entity_1.IncomeORMEntity, (income) => income.budget),
+    __metadata("design:type", income_entity_1.IncomeORMEntity)
 ], BudgetORMEntity.prototype, "incomes", void 0);
 exports.BudgetORMEntity = BudgetORMEntity = __decorate([
-    (0, typeorm_1.Entity)()
+    (0, typeorm_1.Entity)({ name: 'budget' })
 ], BudgetORMEntity);
-;
-let ExpenseORMEntity = class ExpenseORMEntity {
-};
-exports.ExpenseORMEntity = ExpenseORMEntity;
-__decorate([
-    (0, typeorm_1.PrimaryGeneratedColumn)(`uuid`),
-    __metadata("design:type", String)
-], ExpenseORMEntity.prototype, "id", void 0);
-__decorate([
-    (0, typeorm_1.Column)(),
-    __metadata("design:type", Number)
-], ExpenseORMEntity.prototype, "amount", void 0);
-__decorate([
-    (0, typeorm_1.Column)(),
-    __metadata("design:type", String)
-], ExpenseORMEntity.prototype, "description", void 0);
-__decorate([
-    (0, typeorm_1.ManyToOne)(() => BudgetORMEntity, (budget) => budget.expenses),
-    (0, typeorm_1.JoinColumn)(),
-    __metadata("design:type", BudgetORMEntity)
-], ExpenseORMEntity.prototype, "budget", void 0);
-exports.ExpenseORMEntity = ExpenseORMEntity = __decorate([
-    (0, typeorm_1.Entity)()
-], ExpenseORMEntity);
-;
-let IncomeORMEntity = class IncomeORMEntity {
-};
-exports.IncomeORMEntity = IncomeORMEntity;
-__decorate([
-    (0, typeorm_1.PrimaryGeneratedColumn)(`uuid`),
-    __metadata("design:type", String)
-], IncomeORMEntity.prototype, "id", void 0);
-__decorate([
-    (0, typeorm_1.Column)(),
-    __metadata("design:type", Number)
-], IncomeORMEntity.prototype, "amount", void 0);
-__decorate([
-    (0, typeorm_1.Column)(),
-    __metadata("design:type", String)
-], IncomeORMEntity.prototype, "description", void 0);
-__decorate([
-    (0, typeorm_1.ManyToOne)(() => BudgetORMEntity, (budget) => budget.incomes),
-    (0, typeorm_1.JoinColumn)(),
-    __metadata("design:type", BudgetORMEntity)
-], IncomeORMEntity.prototype, "budget", void 0);
-exports.IncomeORMEntity = IncomeORMEntity = __decorate([
-    (0, typeorm_1.Entity)()
-], IncomeORMEntity);
 ;
 //# sourceMappingURL=budget.entity.js.map

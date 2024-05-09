@@ -21,7 +21,16 @@ export class BudgetController {
 
     @Post(`/budgets`)
     createBudget(@Body() requestbody: BudgetDTO): Promise<BudgetORMEntity> {
-        return this.budgetService.createBudget(requestbody)
+        
+        const mappedBudget: CreatedBudget = {
+        title: requestbody.title,
+        balance: requestbody.balance,
+        currency: requestbody.currency,
+        expenses: requestbody.expenses,
+        incomes: requestbody.incomes
+        };
+        
+        return this.budgetService.createBudget(mappedBudget)
 
 
         // const createdBudget: CreatedBudget = {

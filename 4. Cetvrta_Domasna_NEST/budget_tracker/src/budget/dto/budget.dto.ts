@@ -15,10 +15,10 @@ export class BudgetDTO {
     currency: CURRENCY;
     
     @IsNotEmpty()
-    expenses: ExpenseInterface [];
+    expenses: ExpenseInterface;
     
     @IsNotEmpty()
-    incomes: IncomeInterface []
+    incomes: IncomeInterface
 };
 
 export class UpdatedBudgetDTO{
@@ -35,8 +35,8 @@ export class UpdatedBudgetDTO{
     currency?: CURRENCY;
     
     @IsOptional()
-    expenses?: ExpenseInterface[];
+    expenses?: ExpenseInterface;
     
     @IsOptional()
-    incomes?: IncomeInterface[]
+    incomes?: IncomeInterface
 }

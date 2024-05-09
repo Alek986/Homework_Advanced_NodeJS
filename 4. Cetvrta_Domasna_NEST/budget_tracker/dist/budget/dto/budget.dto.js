@@ -32,11 +32,11 @@ __decorate([
 ], BudgetDTO.prototype, "currency", void 0);
 __decorate([
     (0, class_validator_1.IsNotEmpty)(),
-    __metadata("design:type", Array)
+    __metadata("design:type", Object)
 ], BudgetDTO.prototype, "expenses", void 0);
 __decorate([
     (0, class_validator_1.IsNotEmpty)(),
-    __metadata("design:type", Array)
+    __metadata("design:type", Object)
 ], BudgetDTO.prototype, "incomes", void 0);
 ;
 class UpdatedBudgetDTO {
@@ -59,10 +59,10 @@ __decorate([
 ], UpdatedBudgetDTO.prototype, "currency", void 0);
 __decorate([
     (0, class_validator_1.IsOptional)(),
-    __metadata("design:type", Array)
+    __metadata("design:type", Object)
 ], UpdatedBudgetDTO.prototype, "expenses", void 0);
 __decorate([
     (0, class_validator_1.IsOptional)(),
-    __metadata("design:type", Array)
+    __metadata("design:type", Object)
 ], UpdatedBudgetDTO.prototype, "incomes", void 0);
 //# sourceMappingURL=budget.dto.js.map
